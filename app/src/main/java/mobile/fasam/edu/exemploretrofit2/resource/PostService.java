@@ -21,23 +21,23 @@ public interface PostService {
 
 
     //Recupera um post baseado em in id
-    @GET("Posts/{id}")
+    @GET("posts/{id}")
     Call<Posts> get(@Path("id") Integer id);
 
 
     //Tras a lista de posts
-    @GET("Posts/{id}")
+    @GET("posts")
     Call<List<Posts>> get();
 
 
-    @PUT("Posts/{id}")
+    @PUT("posts/{id}")
     Call<Posts> put(@Path("id") Integer id, @Body Posts posts);
 
-    @PATCH("Posts/{id}")
+    @PATCH("posts/{id}")
     Call<Posts> patch(@Path("id") Integer id, @Body Posts posts);
 
     //deleta o post baseado no id
-    @DELETE("Posts/{id}")
+    @DELETE("posts/{id}")
     Call<Void> delete(@Path("id") Integer id);
 
 }

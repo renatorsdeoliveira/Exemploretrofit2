@@ -7,7 +7,6 @@ import lombok.ToString;
 @Data
 @ToString
 @Builder
-
 public class Posts {
     private Integer userId;
     private Integer id;

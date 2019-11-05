@@ -14,6 +14,7 @@ public class BoostrapApi {
             .baseUrl(ENDPOINT)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+
         return retrofit;
     }
 }

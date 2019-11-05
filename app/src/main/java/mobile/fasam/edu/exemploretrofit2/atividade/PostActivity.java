@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import java.util.List;
 
 import mobile.fasam.edu.exemploretrofit2.R;
+import mobile.fasam.edu.exemploretrofit2.adapter.PostAdapter;
 import mobile.fasam.edu.exemploretrofit2.boostrap.BoostrapApi;
 import mobile.fasam.edu.exemploretrofit2.representacao.Posts;
 import mobile.fasam.edu.exemploretrofit2.resource.PostService;
@@ -22,6 +24,7 @@ public class PostActivity extends AppCompatActivity {
     EditText txtUserId;
     EditText txtTitulo;
     EditText txtBoddy;
+    ListView listView;
 
 
     // Criar referencia para consumir serviço
@@ -34,8 +37,8 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void carregarDados(){
+
         // fazer injeção de dependencias da interface
-        
         postService = BoostrapApi.getclient().create(PostService.class);
 
         Call<List<Posts>> get = postService.get();
@@ -46,6 +49,15 @@ public class PostActivity extends AppCompatActivity {
                 //Recuperar a lista de posts
                 List<Posts> posts = response.body();
 
+                //pegar referencia da listview
+                listView = findViewById(R.id.listviewPost);
+
+                PostAdapter adapter =
+                        new PostAdapter(getApplicationContext(), posts);
+
+                //Fazer "bind" com a listView;
+                listView.setAdapter(adapter);
+
             }
 
             @Override
@@ -55,8 +67,7 @@ public class PostActivity extends AppCompatActivity {
         });
         
     }
-
     public void adicionar(View view) {
-
+        carregarDados();
     }
 }
